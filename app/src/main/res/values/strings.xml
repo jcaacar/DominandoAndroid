@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Dominando o Android</string>
+
+    <string name="ok">Ok</string>
+
+    <string name="txtShadow">Vai Corinthians!!!</string>
+    <string name="txtAutoLink">email@email.com - 99619-8761</string>
+    <string name="txtTypeface">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="txtMaxLines">Nunc nec lacus diam. Pellentesque molestie metus diam, at volutpat arcu elementum quis. Nam sed tristique risus, vitae posuere ipsum. Pellentesque feugiat ante odio, et pulvinar odio pulvinar sit amet. Ut sapien metus, rhoncus quis ex gravida, sagittis congue magna. Mauris in augue at lectus volutpat finibus vitae sit amet magna. Nullam mattis vestibulum mattis. In eu est non ipsum dictum lobortis. Vestibulum interdum velit sed libero congue, sed convallis lorem sagittis. Phasellus ornare semper erat ac imperdiet. Curabitur sagittis iaculis eros eget maximus. Suspendisse potenti.</string>
+
+    <string name="edtEmail">Input your e-email</string>
+    <string name="edtName">Input your name</string>
+    <string name="edtPassword">Password</string>
+    <string name="edtOnlyNumbers">Only Numbers</string>
+    <string name="edtAllCaps">All CAPS</string>
+    <string name="edtAutoCorrect">Auto Corrector</string>
+    <string name="edtURI">Input any URL</string>
+    <string name="Multiline">Multiline</string>
+
+    <string name="actxHint">Enter a city</string>
+
+</resources>
