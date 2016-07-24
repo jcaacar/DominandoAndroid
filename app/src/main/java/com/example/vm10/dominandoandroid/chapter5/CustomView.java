@@ -17,18 +17,20 @@ import android.view.View;
 public class CustomView extends View {
 
     private static final String TAG = CustomView.class.getSimpleName();
+    private final int START_COUNT = 0;
 
-    private Paint mPaint;
     private TextPaint mTextPaint;
     private GestureDetector mGestureDetector;
 
+    private Rect textBounds;
+
     private Handler mHandler;
-    private int mCount = 10000;
+    private int mCount = START_COUNT;
 
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            mCount += 155000;
+            mCount += 250;
             invalidate();
         }
     };
@@ -50,16 +52,14 @@ public class CustomView extends View {
         Log.e(TAG, "onAttachedToWindow");
         super.onAttachedToWindow();
 
+        textBounds = new Rect();
+        float textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 30, getResources().getDisplayMetrics());
+
         mTextPaint = new TextPaint();
         mTextPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setTextAlign(Paint.Align.LEFT);
         mTextPaint.setColor(Color.BLUE);
-        float textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 30, getResources().getDisplayMetrics());
         mTextPaint.setTextSize(textSize);
-
-        mPaint = new Paint();
-        mPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(Color.RED);
 
         mHandler = new Handler();
         mGestureDetector = new GestureDetector(getContext(), new CustomGesture());
@@ -77,19 +77,11 @@ public class CustomView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         Log.e(TAG, "onDraw");
+
         String count = String.valueOf(mCount);
-        Rect bounds = new Rect();
-        mTextPaint.getTextBounds(count, 0, count.length(), bounds);
+        mTextPaint.getTextBounds(count, 0, count.length(), textBounds);
 
-        Rect aux = new Rect();
-        aux.left = (getWidth()/2)-(bounds.width()/2);
-        aux.top = (getHeight()/2)-(bounds.height()/2)-bounds.height();
-        aux.right = bounds.width() + aux.left;
-        aux.bottom = bounds.height() + aux.top;
-
-        canvas.drawRect(aux , mPaint);
-        canvas.drawText(count, (getWidth()/2)-(bounds.width()/2), (getHeight()/2)-(bounds.height()/2), mTextPaint);
-
+        canvas.drawText(count, (getWidth()/2)-(textBounds.width()/2), (getHeight()/2)-(textBounds.height()/2), mTextPaint);
         mHandler.postDelayed(runnable, 1000);
     }
 
@@ -116,7 +108,7 @@ public class CustomView extends View {
         public boolean onSingleTapUp(MotionEvent e) {
             Log.e("CustomGesture", "onSingleTapUp");
             mHandler.removeCallbacksAndMessages(null);
-            mCount = 10000;
+            mCount = START_COUNT;
             invalidate();
             return true;
         }
